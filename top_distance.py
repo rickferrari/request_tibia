@@ -57,11 +57,14 @@ for u in url:
             if len(cols[0]) < 3: #Eliminando a linha de "titulo"
                     distance.append([ele for ele in cols if ele]) #Livrar-se de valores vazios
         lista = list(distance)
-print(distance)
+##print(distance)
 
 
         #Inset data in table
 cursor.execute("""DELETE FROM top_distance""")
+conn.commit()
+cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_distance';""")
+conn.commit()
 for dmain in distance:
 ##        print(dmain)
         cursor.execute("""

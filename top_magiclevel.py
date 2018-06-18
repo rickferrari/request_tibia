@@ -27,7 +27,7 @@ uprof = '&profession=' # 0-ALL, 1-Knights, 2-Paladins, 3-Sorcerers, 4-Druids
 upag = '&currentpage=' # Páginas até 12.
 
 for w in worlds:
-        for p in range(1,2): # Para distance, pegar apenas a primeira página
+        for p in range(1,4): # Para distance, pegar apenas a primeira página
             url.append(urli +w+ ulist +lists[8]+ uprof +str(2)+ upag +str(p))
 
         # Conectando a base de dados
@@ -58,6 +58,9 @@ for u in url:
 
         ##Inserindo dados nas tabelas
 cursor.execute("""DELETE FROM top_magiclevel""")
+conn.commit()
+cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_magiclevel';""")
+conn.commit()
 for dmain in distance:
         cursor.execute("""
         INSERT INTO top_magiclevel (Rank, Name, Vocation, Level, World, Extract_data)

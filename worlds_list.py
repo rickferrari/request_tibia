@@ -39,6 +39,9 @@ lista = list(world_List)
 
         ## Trabalando com os dados na tabela
 cursor.execute("""DELETE FROM world_list""")
+conn.commit()
+cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='world_list';""")
+conn.commit()
 for dmain in world_List:
 ##        print(dmain)
         cursor.execute("""
@@ -48,4 +51,4 @@ conn.commit()
 print('Dados inseridos com sucesso.')
 conn.close()
 
-print('\n'+now)
+##print('\n'+now)
